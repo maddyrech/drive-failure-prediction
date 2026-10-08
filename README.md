@@ -1,5 +1,7 @@
 # Predicting hard-drive failures before they happen
 
+[![tests](https://github.com/maddyrech/drive-failure-prediction/actions/workflows/tests.yml/badge.svg)](https://github.com/maddyrech/drive-failure-prediction/actions/workflows/tests.yml)
+
 Data centres replace drives after they fail, which means downtime, rebuilds and rushed swaps. This project asks a simple operations question: **if a team can only check a small number of drives each week, which ones should they check?**
 
 I used [Backblaze's Drive Stats data](https://www.backblaze.com/cloud-storage/resources/hard-drive-test-data), the daily health readings (SMART data) of every hard drive in their data centres, to:
@@ -98,6 +100,23 @@ docker compose run --rm pipeline python -m src.run_pipeline
 docker compose up dashboard        # then open http://localhost:8501
 ```
 
+## Tests
+
+19 automated tests (pytest) run on every push through GitHub Actions. They focus on the logic that decides whether the results can be trusted:
+
+- **Labelling:** a drive is labelled "fails within 30 days" correctly, and nobody's label is used in the final 30 days of data. This test was written to catch a real bug found during development, and fails if that bug is reintroduced.
+- **Leakage:** the time-based split always leaves a 30-day gap between training and testing.
+- **Evaluation:** the weekly check-budget metric gives 100% for a perfect model, about chance for random scores, and respects sampling weights.
+- **Cleaning:** manufacturers are recognised from model names, and boot drives under 1 TB are removed.
+- **Statistics:** failure rates, confidence intervals and hypothesis tests behave as expected on known data.
+
+Run them locally with:
+
+```bash
+pip install -r requirements-dev.txt
+pytest -v
+```
+
 ## Running on Azure
 
 1. **Storage account** (data lake): in the Azure portal create a Storage account in the North Europe region with Standard LRS. Copy the connection string from *Access keys* into `AZURE_STORAGE_CONNECTION_STRING` in `.env`.
@@ -121,6 +140,7 @@ src/
   write_summary.py     headline numbers
   run_pipeline.py      run everything in order
 sql/analysis.sql       fleet analysis queries
+tests/                 pytest tests, run by GitHub Actions on every push
 app/dashboard.py       Streamlit dashboard
 reports/               figures and results
 ```
