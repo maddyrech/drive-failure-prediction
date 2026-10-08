@@ -1,0 +1,50 @@
+# Local setup: a PostgreSQL database, the pipeline, and the dashboard.
+#   docker compose up -d db
+#   docker compose run --rm pipeline python -m src.run_pipeline
+#   docker compose up dashboard        -> http://localhost:8501
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: drives
+      POSTGRES_PASSWORD: drives
+      POSTGRES_DB: drives
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U drives"]
+      interval: 5s
+      retries: 10
+
+  pipeline:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://drives:drives@db:5432/drives
+      SPARK_DRIVER_MEMORY: ${SPARK_DRIVER_MEMORY:-4g}
+    volumes:
+      - .:/app
+      # Big data files live in Docker's own storage: much faster than a Windows folder
+      - drivedata:/app/data
+    depends_on:
+      db:
+        condition: service_healthy
+    profiles: ["pipeline"]
+
+  dashboard:
+    build: .
+    command: streamlit run app/dashboard.py --server.address 0.0.0.0 --server.port 8501
+    environment:
+      DATABASE_URL: postgresql+psycopg://drives:drives@db:5432/drives
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  drivedata:

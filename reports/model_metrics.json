@@ -1,0 +1,203 @@
+{
+  "horizon_days": 30,
+  "validation_start": "2024-04-08",
+  "train_end": "2024-05-18",
+  "test_start": "2024-06-17",
+  "train_rows": 281719,
+  "test_rows": 161856,
+  "test_failure_weeks": 5289,
+  "best_model": "Gradient boosting",
+  "chosen_on": "validation PR-AUC",
+  "validation": {
+    "Logistic regression": {
+      "pr_auc": 0.1084,
+      "recall_at_1pct": 46.16
+    },
+    "Gradient boosting": {
+      "pr_auc": 0.1203,
+      "recall_at_1pct": 51.01
+    },
+    "Gradient boosting (balanced)": {
+      "pr_auc": 0.1118,
+      "recall_at_1pct": 48.18
+    }
+  },
+  "models": {
+    "Logistic regression": {
+      "pr_auc": 0.1549,
+      "roc_auc": 0.8771,
+      "budgets": [
+        {
+          "budget_pct": 0.1,
+          "recall_pct": 17.56,
+          "precision_pct": 28.77
+        },
+        {
+          "budget_pct": 0.25,
+          "recall_pct": 26.85,
+          "precision_pct": 17.88
+        },
+        {
+          "budget_pct": 0.5,
+          "recall_pct": 36.25,
+          "precision_pct": 12.14
+        },
+        {
+          "budget_pct": 1.0,
+          "recall_pct": 45.17,
+          "precision_pct": 7.59
+        },
+        {
+          "budget_pct": 2.0,
+          "recall_pct": 61.2,
+          "precision_pct": 5.15
+        },
+        {
+          "budget_pct": 5.0,
+          "recall_pct": 71.36,
+          "precision_pct": 2.41
+        },
+        {
+          "budget_pct": 10.0,
+          "recall_pct": 75.06,
+          "precision_pct": 1.27
+        }
+      ]
+    },
+    "Gradient boosting": {
+      "pr_auc": 0.1644,
+      "roc_auc": 0.8766,
+      "budgets": [
+        {
+          "budget_pct": 0.1,
+          "recall_pct": 18.34,
+          "precision_pct": 30.03
+        },
+        {
+          "budget_pct": 0.25,
+          "recall_pct": 31.44,
+          "precision_pct": 20.99
+        },
+        {
+          "budget_pct": 0.5,
+          "recall_pct": 41.6,
+          "precision_pct": 13.94
+        },
+        {
+          "budget_pct": 1.0,
+          "recall_pct": 53.58,
+          "precision_pct": 9.0
+        },
+        {
+          "budget_pct": 2.0,
+          "recall_pct": 63.7,
+          "precision_pct": 5.36
+        },
+        {
+          "budget_pct": 5.0,
+          "recall_pct": 71.36,
+          "precision_pct": 2.41
+        },
+        {
+          "budget_pct": 10.0,
+          "recall_pct": 75.19,
+          "precision_pct": 1.27
+        }
+      ]
+    },
+    "Gradient boosting (balanced)": {
+      "pr_auc": 0.178,
+      "roc_auc": 0.8714,
+      "budgets": [
+        {
+          "budget_pct": 0.1,
+          "recall_pct": 18.59,
+          "precision_pct": 30.31
+        },
+        {
+          "budget_pct": 0.25,
+          "recall_pct": 32.09,
+          "precision_pct": 21.43
+        },
+        {
+          "budget_pct": 0.5,
+          "recall_pct": 43.47,
+          "precision_pct": 14.57
+        },
+        {
+          "budget_pct": 1.0,
+          "recall_pct": 54.19,
+          "precision_pct": 9.1
+        },
+        {
+          "budget_pct": 2.0,
+          "recall_pct": 63.91,
+          "precision_pct": 5.38
+        },
+        {
+          "budget_pct": 5.0,
+          "recall_pct": 71.19,
+          "precision_pct": 2.4
+        },
+        {
+          "budget_pct": 10.0,
+          "recall_pct": 74.57,
+          "precision_pct": 1.26
+        }
+      ]
+    }
+  },
+  "ranked_rule": {
+    "pr_auc": 0.0536,
+    "roc_auc": 0.8406,
+    "budgets": [
+      {
+        "budget_pct": 0.1,
+        "recall_pct": 7.77,
+        "precision_pct": 12.56
+      },
+      {
+        "budget_pct": 0.25,
+        "recall_pct": 14.94,
+        "precision_pct": 9.96
+      },
+      {
+        "budget_pct": 0.5,
+        "recall_pct": 23.77,
+        "precision_pct": 7.98
+      },
+      {
+        "budget_pct": 1.0,
+        "recall_pct": 35.39,
+        "precision_pct": 5.95
+      },
+      {
+        "budget_pct": 2.0,
+        "recall_pct": 47.38,
+        "precision_pct": 3.99
+      },
+      {
+        "budget_pct": 5.0,
+        "recall_pct": 68.86,
+        "precision_pct": 2.32
+      },
+      {
+        "budget_pct": 10.0,
+        "recall_pct": 72.72,
+        "precision_pct": 1.23
+      }
+    ]
+  },
+  "simple_rule": {
+    "flag_rate_pct": 5.19,
+    "recall_pct": 71.7,
+    "precision_pct": 2.33
+  },
+  "best_model_at_rule_rate": {
+    "budget_pct": 5.18811756187933,
+    "recall_pct": 71.49,
+    "precision_pct": 2.32
+  },
+  "active_drives_scored": 288456,
+  "scored_date": "2024-09-30"
+}

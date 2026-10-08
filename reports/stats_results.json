@@ -1,0 +1,76 @@
+{
+  "drives": 310999,
+  "failures": 3530,
+  "drive_days": 76842879,
+  "fleet_afr_pct": 1.68,
+  "date_range": [
+    "2024-01-01",
+    "2024-09-30"
+  ],
+  "afr_by_manufacturer": [
+    {
+      "manufacturer": "HGST",
+      "drives": 40502,
+      "drive_days": 10452052,
+      "failures": 852,
+      "drive_years": 28635.759,
+      "afr_pct": 2.975,
+      "afr_low_pct": 2.779,
+      "afr_high_pct": 3.182
+    },
+    {
+      "manufacturer": "Seagate",
+      "drives": 118666,
+      "drive_days": 29494243,
+      "failures": 1609,
+      "drive_years": 80806.145,
+      "afr_pct": 1.991,
+      "afr_low_pct": 1.895,
+      "afr_high_pct": 2.091
+    },
+    {
+      "manufacturer": "Toshiba",
+      "drives": 94360,
+      "drive_days": 24224301,
+      "failures": 819,
+      "drive_years": 66367.948,
+      "afr_pct": 1.234,
+      "afr_low_pct": 1.151,
+      "afr_high_pct": 1.322
+    },
+    {
+      "manufacturer": "WDC",
+      "drives": 57471,
+      "drive_days": 12672283,
+      "failures": 250,
+      "drive_years": 34718.584,
+      "afr_pct": 0.72,
+      "afr_low_pct": 0.634,
+      "afr_high_pct": 0.815
+    }
+  ],
+  "manufacturer_test": {
+    "chi2": 602.72,
+    "dof": 3,
+    "p_value": 2.5973366141659385e-130
+  },
+  "reallocated_sectors_test": {
+    "share_flagged_pct": 4.47,
+    "failure_risk_flagged_pct": 14.7,
+    "failure_risk_clean_pct": 0.5,
+    "relative_risk": 29.4,
+    "relative_risk_ci95": [
+      27.5,
+      31.3
+    ],
+    "chi2": 23834.5,
+    "p_value": 0.0,
+    "mann_whitney_p_value": 0.0
+  },
+  "survival_at_5_years_pct": {
+    "HGST": 82.7,
+    "Seagate": 92.6,
+    "Toshiba": 92.0,
+    "WDC": 96.0
+  }
+}
