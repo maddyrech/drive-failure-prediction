@@ -1,0 +1,22 @@
+# Data and models are large and reproducible from the code
+data/
+models/*.joblib
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
